@@ -12,4 +12,5 @@ enum ItemNameEnum: string
     case CONJURED_MANA_CAKE = 'Conjured Mana Cake';
     case DEXTERITY_VEST = '+5 Dexterity Vest';
     case ELIXIR_OF_THE_MONGOOSE = 'Elixir of the Mongoose';
+    case CONJURED = 'conjured';
 }

@@ -27,7 +27,7 @@ class ItemUpdaterFactory
             ItemNameEnum::SULFURAS => new SulfurasUpdater(),
             ItemNameEnum::CONJURED_MANA_CAKE => new ConjuredItemUpdater(),
             ItemNameEnum::ELIXIR_OF_THE_MONGOOSE => new ElixirOfTheMongooseUpdater(),
-            default => str_contains(strtolower($item->name), 'conjured')
+            default => str_contains(strtolower($item->name), ItemNameEnum::CONJURED->value)
                 ? new ConjuredItemUpdater()
                 : new DefaultItemUpdater(),
         };
