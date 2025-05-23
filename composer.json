@@ -1,0 +1,44 @@
+{
+    "name": "qafoo/gilded-rose-kata",
+    "autoload": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.1",
+        "phpunit/phpunit": "^9.5.5"
+    },
+    "require-dev": {
+        "phpro/grumphp": "^2.12",
+        "phpstan/phpstan": "^2.1",
+        "squizlabs/php_codesniffer": "^3.13",
+        "rector/rector": "^2.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp": true
+        }
+    },
+    "scripts": {
+        "fix-rector": "vendor/bin/rector process || true",
+        "fix-cs": "vendor/bin/phpcbf --standard=phpcs.xml src/ tests/ || true",
+        "validate-rector": "vendor/bin/rector process --dry-run --no-diffs",
+        "validate-phpstan": "vendor/bin/phpstan analyse src tests --no-progress --memory-limit=1G",
+        "validate-phpcs": "vendor/bin/phpcs --standard=phpcs.xml --warning-severity=0 src/ tests/",
+        "pre-commit-fix": [
+            "@fix-rector",
+            "@fix-cs"
+        ],
+        "pre-commit-validate": [
+            "@validate-rector",
+            "@validate-phpstan",
+            "@validate-phpcs"
+        ],
+        "run-validation-scripts": [
+            "@pre-commit-fix",
+            "@pre-commit-validate"
+        ]
+    }
+}

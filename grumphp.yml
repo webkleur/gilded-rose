@@ -1,0 +1,7 @@
+grumphp:
+    tasks:
+        composer_script:
+            metadata:
+                label: "Run full codebase validation scripts"
+            script: 'run-validation-scripts'
+            triggered_by: [php]
