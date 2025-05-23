@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\ItemUpdater;
 
+use App\Enum\ItemNameEnum;
 use App\Item;
 use App\ItemUpdater\ElixirOfTheMongooseUpdater;
 use PHPUnit\Framework\TestCase;
@@ -12,7 +13,7 @@ final class ElixirOfTheMongooseUpdaterTest extends TestCase
 {
     public function testQualityDecreasesByOneBeforeSellInDate(): void
     {
-        $item = new Item('Elixir of the Mongoose', 5, 7);
+        $item = new Item(ItemNameEnum::ELIXIR_OF_THE_MONGOOSE->value, 5, 7);
         $updater = new ElixirOfTheMongooseUpdater();
         $updater->update($item);
 
@@ -22,7 +23,7 @@ final class ElixirOfTheMongooseUpdaterTest extends TestCase
 
     public function testQualityDecreasesByTwoAfterSellInDate(): void
     {
-        $item = new Item('Elixir of the Mongoose', 0, 7);
+        $item = new Item(ItemNameEnum::ELIXIR_OF_THE_MONGOOSE->value, 0, 7);
         $updater = new ElixirOfTheMongooseUpdater();
         $updater->update($item);
 
@@ -32,7 +33,7 @@ final class ElixirOfTheMongooseUpdaterTest extends TestCase
 
     public function testQualityDoesNotGoNegative(): void
     {
-        $item = new Item('Elixir of the Mongoose', 0, 0);
+        $item = new Item(ItemNameEnum::ELIXIR_OF_THE_MONGOOSE->value, 0, 0);
         $updater = new ElixirOfTheMongooseUpdater();
         $updater->update($item);
 

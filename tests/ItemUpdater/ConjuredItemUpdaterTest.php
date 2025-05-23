@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\ItemUpdater;
 
+use App\Enum\ItemNameEnum;
 use PHPUnit\Framework\TestCase;
 use App\Item;
 use App\ItemUpdater\ConjuredItemUpdater;
@@ -12,7 +13,7 @@ final class ConjuredItemUpdaterTest extends TestCase
 {
     public function testQualityDegradesTwiceAsFast(): void
     {
-        $item = new Item('Conjured Mana Cake', 3, 6);
+        $item = new Item(ItemNameEnum::CONJURED_MANA_CAKE->value, 3, 6);
         $updater = new ConjuredItemUpdater();
         $updater->update($item);
 
@@ -22,7 +23,7 @@ final class ConjuredItemUpdaterTest extends TestCase
 
     public function testQualityDoesNotGoNegative(): void
     {
-        $item = new Item('Conjured Mana Cake', 3, 1);
+        $item = new Item(ItemNameEnum::CONJURED_MANA_CAKE->value, 3, 1);
         $updater = new ConjuredItemUpdater();
         $updater->update($item);
 

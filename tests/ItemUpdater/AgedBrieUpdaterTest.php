@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\ItemUpdater;
 
+use App\Enum\ItemNameEnum;
 use PHPUnit\Framework\TestCase;
 use App\Item;
 use App\ItemUpdater\AgedBrieUpdater;
@@ -12,7 +13,7 @@ final class AgedBrieUpdaterTest extends TestCase
 {
     public function testQualityIncreasesOverTime(): void
     {
-        $item = new Item('Aged Brie', 2, 0);
+        $item = new Item(ItemNameEnum::AGED_BRIE->value, 2, 0);
         $updater = new AgedBrieUpdater();
         $updater->update($item);
 
@@ -22,7 +23,7 @@ final class AgedBrieUpdaterTest extends TestCase
 
     public function testQualityDoesNotExceedFifty(): void
     {
-        $item = new Item('Aged Brie', 2, 50);
+        $item = new Item(ItemNameEnum::AGED_BRIE->value, 2, 50);
         $updater = new AgedBrieUpdater();
         $updater->update($item);
 
