@@ -12,6 +12,10 @@ use PHPUnit\Framework\TestCase;
 
 final class GildedRoseTest extends TestCase
 {
+    /**
+     * @dataProvider itemsProvider
+     * @testdox Update quality test with data set "$case"
+     */
     public function testUpdateQualityTest(
         string $case,
         string $name,

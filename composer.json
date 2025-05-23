@@ -30,7 +30,8 @@
         "validate-phpcs": "vendor/bin/phpcs --standard=phpcs.xml --warning-severity=0 src/ tests/",
         "pre-commit-fix": [
             "@fix-rector",
-            "@fix-cs"
+            "@fix-cs",
+            "git add -u"
         ],
         "pre-commit-validate": [
             "@validate-rector",
