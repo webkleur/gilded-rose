@@ -18,6 +18,7 @@ final class GildedRoseTest extends TestCase
             new Item('Sulfuras, Hand of Ragnaros', 0, 80),
             new Item('Conjured Mana Cake', 3, 6),
             new Item('+5 Dexterity Vest', 10, 20),
+            new Item('Elixir of the Mongoose', 5, 7),
         ];
 
         $gildedRose = new GildedRose($items);
@@ -37,5 +38,8 @@ final class GildedRoseTest extends TestCase
 
         $this->assertEquals(9, $items[4]->sell_in);
         $this->assertEquals(19, $items[4]->quality);
+
+        $this->assertEquals(4, $items[5]->sell_in);
+        $this->assertEquals(6, $items[5]->quality);
     }
 }
