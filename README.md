@@ -81,7 +81,7 @@ The original `GildedRose` class contained complex and nested conditional logic. 
 ```
 gilded-rose/
 ├── src
-│   ├── Enum
+│   ├── Enums
 │   │   ├── ItemNameEnum.php
 │   ├── Updaters
 │   │   ├── AgedBrieUpdater.php
