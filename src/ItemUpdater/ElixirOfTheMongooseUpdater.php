@@ -6,7 +6,7 @@ namespace App\ItemUpdater;
 
 use App\Item;
 
-final class ElixirOfTheMongooseUpdater implements ItemUpdaterInterface
+class ElixirOfTheMongooseUpdater implements ItemUpdaterInterface
 {
     public function update(Item $item): void
     {
