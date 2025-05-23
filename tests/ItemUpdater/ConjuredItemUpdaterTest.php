@@ -13,9 +13,9 @@ final class ConjuredItemUpdaterTest extends TestCase
 {
     public function testQualityDegradesTwiceAsFast(): void
     {
-        $item = new Item(ItemNameEnum::CONJURED_MANA_CAKE->value, 3, 6);
+        $item = new Item(name: ItemNameEnum::CONJURED_MANA_CAKE->value, sell_in: 3, quality: 6);
         $updater = new ConjuredItemUpdater();
-        $updater->update($item);
+        $updater->update(item: $item);
 
         $this->assertEquals(2, $item->sell_in);
         $this->assertEquals(4, $item->quality);
@@ -23,9 +23,9 @@ final class ConjuredItemUpdaterTest extends TestCase
 
     public function testQualityDoesNotGoNegative(): void
     {
-        $item = new Item(ItemNameEnum::CONJURED_MANA_CAKE->value, 3, 1);
+        $item = new Item(name: ItemNameEnum::CONJURED_MANA_CAKE->value, sell_in: 3, quality: 1);
         $updater = new ConjuredItemUpdater();
-        $updater->update($item);
+        $updater->update(item: $item);
 
         $this->assertEquals(2, $item->sell_in);
         $this->assertEquals(0, $item->quality);

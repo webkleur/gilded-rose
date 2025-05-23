@@ -19,7 +19,7 @@ class ItemUpdaterFactory
 {
     public function getUpdater(Item $item): ItemUpdaterInterface
     {
-        $itemName = ItemNameEnum::tryFrom($item->name);
+        $itemName = ItemNameEnum::tryFrom(value: $item->name);
 
         return match ($itemName) {
             ItemNameEnum::AGED_BRIE => new AgedBrieUpdater(),
@@ -27,7 +27,7 @@ class ItemUpdaterFactory
             ItemNameEnum::SULFURAS => new SulfurasUpdater(),
             ItemNameEnum::CONJURED_MANA_CAKE => new ConjuredItemUpdater(),
             ItemNameEnum::ELIXIR_OF_THE_MONGOOSE => new ElixirOfTheMongooseUpdater(),
-            default => str_contains(strtolower($item->name), ItemNameEnum::CONJURED->value)
+            default => str_contains(haystack: strtolower(string: $item->name), needle: ItemNameEnum::CONJURED->value)
                 ? new ConjuredItemUpdater()
                 : new DefaultItemUpdater(),
         };

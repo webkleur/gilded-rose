@@ -13,9 +13,9 @@ final class DefaultItemUpdaterTest extends TestCase
 {
     public function testQualityDegradesByOneBeforeSellIn(): void
     {
-        $item = new Item(ItemNameEnum::DEXTERITY_VEST->value, 10, 20);
+        $item = new Item(name: ItemNameEnum::DEXTERITY_VEST->value, sell_in: 10, quality: 20);
         $updater = new DefaultItemUpdater();
-        $updater->update($item);
+        $updater->update(item: $item);
 
         $this->assertEquals(9, $item->sell_in);
         $this->assertEquals(19, $item->quality);
@@ -23,9 +23,9 @@ final class DefaultItemUpdaterTest extends TestCase
 
     public function testQualityDegradesByTwoAfterSellIn(): void
     {
-        $item = new Item(ItemNameEnum::DEXTERITY_VEST->value, 0, 20);
+        $item = new Item(name: ItemNameEnum::DEXTERITY_VEST->value, sell_in: 0, quality: 20);
         $updater = new DefaultItemUpdater();
-        $updater->update($item);
+        $updater->update(item: $item);
 
         $this->assertEquals(-1, $item->sell_in);
         $this->assertEquals(18, $item->quality);
@@ -33,9 +33,9 @@ final class DefaultItemUpdaterTest extends TestCase
 
     public function testQualityDoesNotGoNegative(): void
     {
-        $item = new Item(ItemNameEnum::DEXTERITY_VEST->value, 10, 0);
+        $item = new Item(name: ItemNameEnum::DEXTERITY_VEST->value, sell_in: 10, quality: 0);
         $updater = new DefaultItemUpdater();
-        $updater->update($item);
+        $updater->update(item: $item);
 
         $this->assertEquals(9, $item->sell_in);
         $this->assertEquals(0, $item->quality);
