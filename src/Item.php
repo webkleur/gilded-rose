@@ -14,9 +14,4 @@ final class Item
         $this->sell_in = $sell_in;
         $this->quality = $quality;
     }
-
-    public function __toString(): string
-    {
-        return "{$this->name}, {$this->sell_in}, {$this->quality}";
-    }
 }
