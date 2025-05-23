@@ -20,8 +20,8 @@ final class GildedRoseTest extends TestCase
         int $expectedSellIn,
         int $expectedQuality
     ): void {
-        $item = new Item($name, $sellIn, $quality);
-        (new GildedRose([$item]))->updateQuality();
+        $item = new Item(name: $name, sell_in: $sellIn, quality: $quality);
+        (new GildedRose(items: [$item]))->updateQuality();
 
         $this->assertSame($expectedSellIn, $item->sell_in, "[$case] Failed asserting sell_in");
         $this->assertSame($expectedQuality, $item->quality, "[$case] Failed asserting quality");
@@ -37,12 +37,12 @@ final class GildedRoseTest extends TestCase
             $L::AGED_SELL_IN->value     => [$L::AGED_SELL_IN->value, $I::AGED_BRIE->value, 0, 10, -1, 12],
             $L::AGED_AFTER->value       => [$L::AGED_AFTER->value, $I::AGED_BRIE->value, -5, 10, -6, 12],
             $L::AGED_BEFORE_MAX->value  => [$L::AGED_BEFORE_MAX->value, $I::AGED_BRIE->value, 5, 50, 4, 50],
-            $L::AGED_SELL_IN_NEAR->value=> [$L::AGED_SELL_IN_NEAR->value, $I::AGED_BRIE->value, 0, 49, -1, 50],
+            $L::AGED_SELL_IN_NEAR->value => [$L::AGED_SELL_IN_NEAR->value, $I::AGED_BRIE->value, 0, 49, -1, 50],
             $L::AGED_SELL_IN_MAX->value => [$L::AGED_SELL_IN_MAX->value, $I::AGED_BRIE->value, 0, 50, -1, 50],
             $L::AGED_AFTER_MAX->value   => [$L::AGED_AFTER_MAX->value, $I::AGED_BRIE->value, -10, 50, -11, 50],
 
             $L::PASS_BEFORE->value      => [$L::PASS_BEFORE->value, $I::BACKSTAGE_PASS->value, 10, 10, 9, 12],
-            $L::PASS_MORE_THAN_10->value=> [$L::PASS_MORE_THAN_10->value, $I::BACKSTAGE_PASS->value, 11, 10, 10, 11],
+            $L::PASS_MORE_THAN_10->value => [$L::PASS_MORE_THAN_10->value, $I::BACKSTAGE_PASS->value, 11, 10, 10, 11],
             $L::PASS_FIVE_DAYS->value   => [$L::PASS_FIVE_DAYS->value, $I::BACKSTAGE_PASS->value, 5, 10, 4, 13],
             $L::PASS_SELL_IN->value     => [$L::PASS_SELL_IN->value, $I::BACKSTAGE_PASS->value, 0, 10, -1, 0],
             $L::PASS_CLOSE_MAX->value   => [$L::PASS_CLOSE_MAX->value, $I::BACKSTAGE_PASS->value, 10, 50, 9, 50],
