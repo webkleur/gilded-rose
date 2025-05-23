@@ -86,8 +86,9 @@ gilded-rose/
 │   │   ├── BackstagePassUpdater.php
 │   │   ├── ConjuredItemUpdater.php
 │   │   ├── DefaultItemUpdater.php
-│   │   ├── ItemUpdaterInterface.php
+│   │   ├── ElixirOfTheMongooseUpdater.php
 │   │   └── SulfurasUpdater.php
+│   │   └── ItemUpdaterInterface.php
 │   ├── GildedRose.php
 │   └── Item.php
 ├── tests
@@ -97,6 +98,7 @@ gilded-rose/
 │   │   ├── ConjuredItemUpdaterTest.php
 │   │   ├── DefaultItemUpdaterTest.php
 │   │   └── SulfurasUpdaterTest.php
+│   │   └── ElixirOfTheMongooseUpdaterTest.php
 │   └── GildedRoseTest.php
 ├── composer.json
 ├── composer.lock
