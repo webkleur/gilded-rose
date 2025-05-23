@@ -14,7 +14,8 @@
         "phpro/grumphp": "^2.12",
         "phpstan/phpstan": "^2.1",
         "squizlabs/php_codesniffer": "^3.13",
-        "rector/rector": "^2.0"
+        "rector/rector": "^2.0",
+        "savinmikhail/add_named_arguments_rector": "^0.1.17"
     },
     "config": {
         "allow-plugins": {
