@@ -1,7 +1,7 @@
 
 # 🏰 Gilded Rose Refactoring
 
-This project is a refactored version of the classic Gilded Rose, aimed at improving code quality, maintainability, and extensibility while preserving existing functionality.
+This project is a refactored version of the classic [Gilded Rose](https://github.com/zibios/gilded-rose-php/tree/main), aimed at improving code quality, maintainability, and extensibility while preserving existing functionality.
 
 ## 🎬 Demo
  [Watch Demo](https://app.screencast.com/TcSeyvABPuTro)
@@ -82,6 +82,7 @@ The original `GildedRose` class contained complex and nested conditional logic. 
 gilded-rose/
 ├── src
 │   ├── Enums
+│   │   ├── TestLabelEnum.php
 │   │   ├── ItemNameEnum.php
 │   ├── Updaters
 │   │   ├── AgedBrieUpdater.php
