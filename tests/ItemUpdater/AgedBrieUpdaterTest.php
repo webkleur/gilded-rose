@@ -13,21 +13,21 @@ final class AgedBrieUpdaterTest extends TestCase
 {
     public function testQualityIncreasesOverTime(): void
     {
-        $item = new Item(name: ItemNameEnum::AGED_BRIE->value, sell_in: 2, quality: 0);
+        $item = new Item(name: ItemNameEnum::AGED_BRIE->value, sellIn: 2, quality: 0);
         $updater = new AgedBrieUpdater();
         $updater->update(item: $item);
 
-        $this->assertEquals(1, $item->sell_in);
+        $this->assertEquals(1, $item->sellIn);
         $this->assertEquals(1, $item->quality);
     }
 
     public function testQualityDoesNotExceedFifty(): void
     {
-        $item = new Item(name: ItemNameEnum::AGED_BRIE->value, sell_in: 2, quality: 50);
+        $item = new Item(name: ItemNameEnum::AGED_BRIE->value, sellIn: 2, quality: 50);
         $updater = new AgedBrieUpdater();
         $updater->update(item: $item);
 
-        $this->assertEquals(1, $item->sell_in);
+        $this->assertEquals(1, $item->sellIn);
         $this->assertEquals(50, $item->quality);
     }
 }

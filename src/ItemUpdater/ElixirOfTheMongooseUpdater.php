@@ -10,13 +10,13 @@ class ElixirOfTheMongooseUpdater implements ItemUpdaterInterface
 {
     public function update(Item $item): void
     {
-        $item->sell_in--;
+        $item->sellIn--;
 
         if ($item->quality > 0) {
             $item->quality--;
         }
 
-        if ($item->sell_in < 0 && $item->quality > 0) {
+        if ($item->sellIn < 0 && $item->quality > 0) {
             $item->quality--;
         }
     }

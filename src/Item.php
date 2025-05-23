@@ -6,12 +6,12 @@ namespace App;
 
 final class Item
 {
-    public int $sell_in;
+    public int $sellIn;
     public int $quality;
 
-    public function __construct(public readonly string $name, int $sell_in, int $quality)
+    public function __construct(public readonly string $name, int $sellIn, int $quality)
     {
-        $this->sell_in = $sell_in;
+        $this->sellIn = $sellIn;
         $this->quality = $quality;
     }
 }

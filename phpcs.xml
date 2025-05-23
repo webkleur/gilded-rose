@@ -1,6 +1,18 @@
 <?xml version="1.0"?>
-<ruleset name="PSR12">
-    <description>PHP_CodeSniffer configuration for PSR-12</description>
+<ruleset name="PSR12 + camelCase">
+    <description>PHP_CodeSniffer configuration for PSR-12 with camelCase enforcement</description>
+
+    <!-- Include the PSR-12 standard -->
     <rule ref="PSR12"/>
+
+    <!-- Enforce camelCase naming for variables, properties, and parameters -->
+    <rule ref="Squiz.NamingConventions.ValidVariableName"/>
+
+    <!-- Exclude the rule that enforces leading underscores for private members -->
+    <rule ref="Squiz.NamingConventions.ValidVariableName">
+        <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
+    </rule>
+
+    <!-- Exclude the vendor directory -->
     <exclude-pattern>vendor/*</exclude-pattern>
 </ruleset>

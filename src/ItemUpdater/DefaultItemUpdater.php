@@ -10,9 +10,9 @@ class DefaultItemUpdater implements ItemUpdaterInterface
 {
     public function update(Item $item): void
     {
-        $item->sell_in--;
+        $item->sellIn--;
 
-        $degradation = ($item->sell_in < 0) ? 2 : 1;
+        $degradation = ($item->sellIn < 0) ? 2 : 1;
         $item->quality = max(0, $item->quality - $degradation);
     }
 }

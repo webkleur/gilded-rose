@@ -15,7 +15,8 @@
         "phpstan/phpstan": "^2.1",
         "squizlabs/php_codesniffer": "^3.13",
         "rector/rector": "^2.0",
-        "savinmikhail/add_named_arguments_rector": "^0.1.17"
+        "savinmikhail/add_named_arguments_rector": "^0.1.17",
+        "epifrin/rector-custom-rules": "^0.5.1"
     },
     "config": {
         "allow-plugins": {
@@ -42,5 +43,11 @@
             "@pre-commit-fix",
             "@pre-commit-validate"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Utils\\Rector\\": "utils/rector/src",
+            "Utils\\Rector\\Tests\\": "utils/rector/tests"
+        }
     }
 }

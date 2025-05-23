@@ -10,19 +10,19 @@ class BackstagePassesUpdater implements ItemUpdaterInterface
 {
     public function update(Item $item): void
     {
-        $item->sell_in--;
+        $item->sellIn--;
 
-        if ($item->sell_in < 0) {
+        if ($item->sellIn < 0) {
             $item->quality = 0;
             return;
         }
 
         if ($item->quality < 50) {
             $item->quality++;
-            if ($item->sell_in < 10 && $item->quality < 50) {
+            if ($item->sellIn < 10 && $item->quality < 50) {
                 $item->quality++;
             }
-            if ($item->sell_in < 5 && $item->quality < 50) {
+            if ($item->sellIn < 5 && $item->quality < 50) {
                 $item->quality++;
             }
         }

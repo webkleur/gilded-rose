@@ -24,41 +24,41 @@ final class GildedRoseTest extends TestCase
         int $expectedSellIn,
         int $expectedQuality
     ): void {
-        $item = new Item(name: $name, sell_in: $sellIn, quality: $quality);
+        $item = new Item(name: $name, sellIn: $sellIn, quality: $quality);
         (new GildedRose(items: [$item]))->updateQuality();
 
-        $this->assertSame($expectedSellIn, $item->sell_in, "[$case] Failed asserting sell_in");
+        $this->assertSame($expectedSellIn, $item->sellIn, "[$case] Failed asserting sell_in");
         $this->assertSame($expectedQuality, $item->quality, "[$case] Failed asserting quality");
     }
 
     public function itemsProvider(): array
     {
-        $L = Label::class;
-        $I = ItemName::class;
+        $l = Label::class;
+        $i = ItemName::class;
 
         return [
-            $L::AGED_BEFORE->value      => [$L::AGED_BEFORE->value, $I::AGED_BRIE->value, 10, 10, 9, 11],
-            $L::AGED_SELL_IN->value     => [$L::AGED_SELL_IN->value, $I::AGED_BRIE->value, 0, 10, -1, 12],
-            $L::AGED_AFTER->value       => [$L::AGED_AFTER->value, $I::AGED_BRIE->value, -5, 10, -6, 12],
-            $L::AGED_BEFORE_MAX->value  => [$L::AGED_BEFORE_MAX->value, $I::AGED_BRIE->value, 5, 50, 4, 50],
-            $L::AGED_SELL_IN_NEAR->value => [$L::AGED_SELL_IN_NEAR->value, $I::AGED_BRIE->value, 0, 49, -1, 50],
-            $L::AGED_SELL_IN_MAX->value => [$L::AGED_SELL_IN_MAX->value, $I::AGED_BRIE->value, 0, 50, -1, 50],
-            $L::AGED_AFTER_MAX->value   => [$L::AGED_AFTER_MAX->value, $I::AGED_BRIE->value, -10, 50, -11, 50],
+            $l::AGED_BEFORE->value      => [$l::AGED_BEFORE->value, $i::AGED_BRIE->value, 10, 10, 9, 11],
+            $l::AGED_SELL_IN->value     => [$l::AGED_SELL_IN->value, $i::AGED_BRIE->value, 0, 10, -1, 12],
+            $l::AGED_AFTER->value       => [$l::AGED_AFTER->value, $i::AGED_BRIE->value, -5, 10, -6, 12],
+            $l::AGED_BEFORE_MAX->value  => [$l::AGED_BEFORE_MAX->value, $i::AGED_BRIE->value, 5, 50, 4, 50],
+            $l::AGED_SELL_IN_NEAR->value => [$l::AGED_SELL_IN_NEAR->value, $i::AGED_BRIE->value, 0, 49, -1, 50],
+            $l::AGED_SELL_IN_MAX->value => [$l::AGED_SELL_IN_MAX->value, $i::AGED_BRIE->value, 0, 50, -1, 50],
+            $l::AGED_AFTER_MAX->value   => [$l::AGED_AFTER_MAX->value, $i::AGED_BRIE->value, -10, 50, -11, 50],
 
-            $L::PASS_BEFORE->value      => [$L::PASS_BEFORE->value, $I::BACKSTAGE_PASS->value, 10, 10, 9, 12],
-            $L::PASS_MORE_THAN_10->value => [$L::PASS_MORE_THAN_10->value, $I::BACKSTAGE_PASS->value, 11, 10, 10, 11],
-            $L::PASS_FIVE_DAYS->value   => [$L::PASS_FIVE_DAYS->value, $I::BACKSTAGE_PASS->value, 5, 10, 4, 13],
-            $L::PASS_SELL_IN->value     => [$L::PASS_SELL_IN->value, $I::BACKSTAGE_PASS->value, 0, 10, -1, 0],
-            $L::PASS_CLOSE_MAX->value   => [$L::PASS_CLOSE_MAX->value, $I::BACKSTAGE_PASS->value, 10, 50, 9, 50],
-            $L::PASS_VERY_CLOSE->value  => [$L::PASS_VERY_CLOSE->value, $I::BACKSTAGE_PASS->value, 5, 50, 4, 50],
-            $L::PASS_AFTER->value       => [$L::PASS_AFTER->value, $I::BACKSTAGE_PASS->value, -5, 50, -6, 0],
+            $l::PASS_BEFORE->value      => [$l::PASS_BEFORE->value, $i::BACKSTAGE_PASS->value, 10, 10, 9, 12],
+            $l::PASS_MORE_THAN_10->value => [$l::PASS_MORE_THAN_10->value, $i::BACKSTAGE_PASS->value, 11, 10, 10, 11],
+            $l::PASS_FIVE_DAYS->value   => [$l::PASS_FIVE_DAYS->value, $i::BACKSTAGE_PASS->value, 5, 10, 4, 13],
+            $l::PASS_SELL_IN->value     => [$l::PASS_SELL_IN->value, $i::BACKSTAGE_PASS->value, 0, 10, -1, 0],
+            $l::PASS_CLOSE_MAX->value   => [$l::PASS_CLOSE_MAX->value, $i::BACKSTAGE_PASS->value, 10, 50, 9, 50],
+            $l::PASS_VERY_CLOSE->value  => [$l::PASS_VERY_CLOSE->value, $i::BACKSTAGE_PASS->value, 5, 50, 4, 50],
+            $l::PASS_AFTER->value       => [$l::PASS_AFTER->value, $i::BACKSTAGE_PASS->value, -5, 50, -6, 0],
 
-            $L::SULF_BEFORE->value      => [$L::SULF_BEFORE->value, $I::SULFURAS->value, 10, 80, 10, 80],
-            $L::SULF_SELL_IN->value     => [$L::SULF_SELL_IN->value, $I::SULFURAS->value, 0, 80, 0, 80],
-            $L::SULF_AFTER->value       => [$L::SULF_AFTER->value, $I::SULFURAS->value, -1, 80, -1, 80],
+            $l::SULF_BEFORE->value      => [$l::SULF_BEFORE->value, $i::SULFURAS->value, 10, 80, 10, 80],
+            $l::SULF_SELL_IN->value     => [$l::SULF_SELL_IN->value, $i::SULFURAS->value, 0, 80, 0, 80],
+            $l::SULF_AFTER->value       => [$l::SULF_AFTER->value, $i::SULFURAS->value, -1, 80, -1, 80],
 
-            $L::ELIX_BEFORE->value      => [$L::ELIX_BEFORE->value, $I::ELIXIR_OF_THE_MONGOOSE->value, 10, 10, 9, 9],
-            $L::ELIX_SELL_IN->value     => [$L::ELIX_SELL_IN->value, $I::ELIXIR_OF_THE_MONGOOSE->value, 0, 10, -1, 8],
+            $l::ELIX_BEFORE->value      => [$l::ELIX_BEFORE->value, $i::ELIXIR_OF_THE_MONGOOSE->value, 10, 10, 9, 9],
+            $l::ELIX_SELL_IN->value     => [$l::ELIX_SELL_IN->value, $i::ELIXIR_OF_THE_MONGOOSE->value, 0, 10, -1, 8],
         ];
     }
 }
