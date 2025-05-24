@@ -1,134 +1,147 @@
-
 # 🏰 Gilded Rose Refactoring
 
-This project is a refactored version of the classic [Gilded Rose](https://github.com/zibios/gilded-rose-php/tree/main), aimed at improving code quality, maintainability, and extensibility while preserving existing functionality.
+This project is a carefully refactored version of the classic [Gilded Rose kata](https://github.com/zibios/gilded-rose-php/tree/main), designed to demonstrate clean code, maintainability, extensibility, and SOLID principles — while preserving the original business logic.
+
+---
 
 ## 🎬 Demo
- [Watch Demo](https://app.screencast.com/TcSeyvABPuTro)
-## 📦 Requirements
+[Watch Demo](https://app.screencast.com/TcSeyvABPuTro)
 
-- PHP 8.1
+---
+
+## 📦 Requirements
+- PHP 8.1+
 - Composer
 - PHPUnit 9.5
 
+---
+
 ## ⚙️ Installation
+```bash
+git clone https://github.com/webkleur/gilded-rose.git
+cd gilded-rose
+composer install
+```
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/webkleur/gilded-rose.git
-   cd gilded-rose
-   ```
-
-2. Install dependencies:
-   ```bash
-   composer install
-   ```
+---
 
 ## 🧪 Running Tests
-
-Execute the test suite using PHPUnit:
+Run all unit and integration tests:
 ```bash
 ./vendor/bin/phpunit --testdox
 ```
 
-## 🛠️ Code Quality Tools
-
-Integrated several tools to maintain high code standards:
-
-- **PHPStan**: Static analysis for PHP.
-- **Rector**: Automated refactoring tool.
-- **PHP_CodeSniffer (PHPCS)**: Enforces coding standards.
-- **GrumPHP**: Pre-commit hooks to prevent broken code from being committed.
-
-Run all validation scripts:
-```bash
-composer run-validation-scripts
-```
+---
 
 ## 🧰 Composer Scripts
+```bash
+composer fix-rector             # Applies Rector refactorings
+composer fix-cs                 # Fixes code style violations
+composer validate-phpstan       # Runs PHPStan static analysis
+composer validate-phpcs         # Checks coding standards
+composer run-validation-scripts # Runs all fixers and validators
+```
 
-Defined several Composer scripts for common tasks:
+---
 
-- `fix-rector`: Applies Rector refactorings.
-- `fix-cs`: Fixes coding standard violations.
-- `validate-rector`: Checks Rector rules without applying changes.
-- `validate-phpstan`: Runs PHPStan analysis.
-- `validate-phpcs`: Checks coding standards.
-- `pre-commit-fix`: Runs fixers before committing.
-- `pre-commit-validate`: Runs validators before committing.
-- `run-validation-scripts`: Runs all fixers and validators.
+## 🛠️ Code Quality Tools
+- **PHPStan** – Static code analysis
+- **Rector** – Automated refactorer
+- **PHPCS** – PSR-12 coding style checker
+- **GrumPHP** – Pre-commit quality gate
+
+---
 
 ## 🔧 GrumPHP Configuration
+GrumPHP is configured to enforce quality before commits:
+- `phpstan`
+- `phpcs`
+- `rector`
+- `composer_script` (`run-validation-scripts`)
 
-GrumPHP is configured to run the following tasks on pre-commit:
-
-- `phpstan`: Static analysis.
-- `phpcs`: Coding standards check.
-- `rector`: Code refactoring.
-- `composer_script`: Executes `run-validation-scripts`.
+---
 
 ## 🧱 Refactoring Overview
 
-The original `GildedRose` class contained complex and nested conditional logic. Refactored the codebase to improve clarity and maintainability:
+### ✅ Patterns & Practices
+- **Strategy Pattern**: Each item type has its own `Updater` class implementing `ItemUpdaterInterface`.
+- **Decorator Pattern**: `ConjuredItemUpdater` wraps any other updater to apply accelerated degradation.
+- **Factory Pattern**: `ItemUpdaterFactory` selects the correct updater per item.
+- **Bounded Logic Trait**: `QualityBounded` centralizes quality constraints to avoid duplication.
+- **Strict Typing**: All files declare strict mode.
+- **PSR-12**: Code adheres to PSR-12 coding standards.
 
-- **Strategy Pattern**: Implemented to handle different item behaviors. Each item type has its own updater class implementing the `ItemUpdaterInterface`.
-- **Factory Pattern**: Introduced `ItemUpdaterFactory` to instantiate appropriate updater classes based on item types.
-- **Strict Typing**: Added `declare(strict_types=1);` to all PHP files.
-- **PSR-12 Compliance**: Ensured code adheres to PSR-12 coding standards.
+### ✅ SOLID Principles
+| Principle | Status | Explanation |
+|-----------|--------|-------------|
+| **S** – Single Responsibility | ✅ | Each updater handles only one item type’s behavior. |
+| **O** – Open/Closed | ✅ | Adding a new item only requires a new updater and a factory mapping. |
+| **L** – Liskov Substitution | ✅ | All updaters use a common interface; decorators wrap any updater. |
+| **I** – Interface Segregation | ✅ | Small, focused interface: `ItemUpdaterInterface`. |
+| **D** – Dependency Inversion | ✅ | Factory returns abstractions; `ConjuredItemUpdater` depends on interface. |
+
+---
 
 ## 📂 Project Structure
-
-```
+```bash
 gilded-rose/
-├── src
-│   ├── Enums
-│   │   ├── TestLabelEnum.php
-│   │   ├── ItemNameEnum.php
-│   ├── Updaters
-│   │   ├── AgedBrieUpdater.php
-│   │   ├── BackstagePassUpdater.php
-│   │   ├── ConjuredItemUpdater.php
-│   │   ├── DefaultItemUpdater.php
-│   │   ├── ElixirOfTheMongooseUpdater.php
-│   │   └── SulfurasUpdater.php
-│   │   └── ItemUpdaterInterface.php
-│   ├── GildedRose.php
-│   └── Item.php
-├── tests
-│   ├── Updaters
-│   │   ├── AgedBrieUpdaterTest.php
-│   │   ├── BackstagePassUpdaterTest.php
-│   │   ├── ConjuredItemUpdaterTest.php
-│   │   ├── DefaultItemUpdaterTest.php
-│   │   └── SulfurasUpdaterTest.php
-│   │   └── ElixirOfTheMongooseUpdaterTest.php
-│   └── GildedRoseTest.php
+├── README.md
 ├── composer.json
 ├── composer.lock
 ├── grumphp.yml
 ├── phpcs.xml
-├── phpstan.neon
+├── phpunit.xml
 ├── rector.php
-└── README.md
-
+├── src
+│   ├── Enums
+│   │   ├── ItemNameEnum.php
+│   │   └── TestLabelEnum.php
+│   ├── Factory
+│   │   └── ItemUpdaterFactory.php
+│   ├── GildedRose.php
+│   ├── Item.php
+│   ├── ItemUpdater
+│   │   ├── AgedBrieUpdater.php
+│   │   ├── BackstagePassesUpdater.php
+│   │   ├── ConjuredItemUpdater.php
+│   │   ├── DefaultItemUpdater.php
+│   │   ├── ElixirOfTheMongooseUpdater.php
+│   │   ├── ItemUpdaterInterface.php
+│   │   └── SulfurasUpdater.php
+│   └── Traits
+│       └── QualityBounded.php
+└── tests
+    ├── GildedRoseTest.php
+    ├── Integration
+    └── ItemUpdater
+        ├── AgedBrieUpdaterTest.php
+        ├── BackstagePassesUpdaterTest.php
+        ├── ConjuredItemUpdaterTest.php
+        ├── DefaultItemUpdaterTest.php
+        ├── ElixirOfTheMongooseUpdaterTest.php
+        └── SulfurasUpdaterTest.php
 ```
 
-## 📖 Original Business Requirements
+---
 
-As per the original Gilded Rose:
+## 📖 Business Rules
+- All items have a `sellIn` and `quality` value.
+- Each day, both values update based on item rules.
+- `Quality` never goes below 0 or above 50.
+- "Aged Brie" increases in quality.
+- "Backstage passes" increase by +1, +2, +3, then drop to 0.
+- "Sulfuras" is legendary: never sold or changed.
+- "Conjured" items degrade twice as fast.
 
-- All items have a `SellIn` value and a `Quality` value.
-- At the end of each day, `SellIn` and `Quality` are updated.
-- Once the sell-by date has passed, `Quality` degrades twice as fast.
-- `Quality` is never negative.
-- "Aged Brie" increases in `Quality` the older it gets.
-- `Quality` is never more than 50.
-- "Sulfuras" never has to be sold and never decreases in `Quality`.
-- "Backstage passes" increase in `Quality` as `SellIn` approaches; `Quality` increases by 2 when there are 10 days or less and by 3 when there are 5 days or less, but drops to 0 after the concert.
+---
 
-## ✅ Benefits of Refactoring
+## ✅ Benefits of This Refactor
+- **Maintainability**: Logic is modular, testable, and scalable.
+- **Testability**: Unit & integration tests for each component.
+- **Extensibility**: Add new item types with minimal changes.
+- **Clarity**: Logic reads like business rules — not condition soup.
+- **SOLID Compliance**: Architecture reflects modern PHP standards.
 
-- **Maintainability**: Simplified code structure makes it easier to manage and extend.
-- **Testability**: Modular design allows for targeted unit testing.
-- **Scalability**: Easily add new item types with specific behaviors.
-- **Code Quality**: Automated tools ensure adherence to best practices.
+---
+
+**Built with ❤️ by [webkleur](https://github.com/webkleur)**

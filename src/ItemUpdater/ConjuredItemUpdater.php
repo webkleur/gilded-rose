@@ -5,14 +5,19 @@ declare(strict_types=1);
 namespace App\ItemUpdater;
 
 use App\Item;
+use App\Traits\QualityBounded;
 
 class ConjuredItemUpdater implements ItemUpdaterInterface
 {
+    use QualityBounded;
+
+    public function __construct(private readonly ItemUpdaterInterface $inner)
+    {
+    }
+
     public function update(Item $item): void
     {
-        $item->sellIn--;
-
-        $degradation = ($item->sellIn < 0) ? 4 : 2;
-        $item->quality = max(0, $item->quality - $degradation);
+        $this->inner->update($item);
+        $item->quality = $this->decreaseQuality(quality: $item->quality);
     }
 }

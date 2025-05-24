@@ -5,14 +5,20 @@ declare(strict_types=1);
 namespace App\ItemUpdater;
 
 use App\Item;
+use App\Traits\QualityBounded;
 
 class DefaultItemUpdater implements ItemUpdaterInterface
 {
+    use QualityBounded;
+
     public function update(Item $item): void
     {
         $item->sellIn--;
 
-        $degradation = ($item->sellIn < 0) ? 2 : 1;
-        $item->quality = max(0, $item->quality - $degradation);
+        $item->quality = $this->decreaseQuality(quality: $item->quality);
+
+        if ($item->sellIn < 0) {
+            $item->quality = $this->decreaseQuality(quality: $item->quality);
+        }
     }
 }

@@ -24,10 +24,10 @@ class ItemUpdaterFactory
             ItemNameEnum::AGED_BRIE => new AgedBrieUpdater(),
             ItemNameEnum::BACKSTAGE_PASS => new BackstagePassesUpdater(),
             ItemNameEnum::SULFURAS => new SulfurasUpdater(),
-            ItemNameEnum::CONJURED_MANA_CAKE => new ConjuredItemUpdater(),
+            ItemNameEnum::CONJURED_MANA_CAKE => new ConjuredItemUpdater(inner: new DefaultItemUpdater()),
             ItemNameEnum::ELIXIR_OF_THE_MONGOOSE => new ElixirOfTheMongooseUpdater(),
             default => str_contains(haystack: strtolower(string: $item->name), needle: ItemNameEnum::CONJURED->value)
-                ? new ConjuredItemUpdater()
+                ? new ConjuredItemUpdater(inner: new DefaultItemUpdater())
                 : new DefaultItemUpdater(),
         };
     }
