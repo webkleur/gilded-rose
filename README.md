@@ -5,7 +5,7 @@ This project is a carefully refactored version of the classic [Gilded Rose kata]
 ---
 
 ## 🎬 Demo
-[Watch Demo](https://app.screencast.com/TcSeyvABPuTro)
+[Watch Demo](https://app.screencast.com/o6zVI9O9BkPCE)
 
 ---
 
